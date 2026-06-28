@@ -1,0 +1,305 @@
+/* Panel flottant — tous les sélecteurs sont scoped sous .acs-panel
+   pour ne pas interférer avec les styles de la page hôte.         */
+
+.acs-panel {
+  all: initial; /* reset complet pour ne rien hériter de la page */
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 340px;
+  max-height: 90vh;
+  z-index: 2147483640;
+  background: #14152a;
+  border: 1px solid #34376a;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.6);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #e9eaff;
+  overflow: hidden;
+}
+
+/* ── En-tête (drag handle) ────────────────────────────────────── */
+.acs-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #1d1f3a;
+  border-bottom: 1px solid #34376a;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+.acs-panel-header:active { cursor: grabbing; }
+
+.acs-panel-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #e9eaff;
+}
+
+.acs-panel-close {
+  all: initial;
+  font-family: inherit;
+  cursor: pointer;
+  color: #9aa0d0;
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.acs-panel-close:hover { color: #ef4444; background: rgba(239,68,68,.12); }
+
+/* ── Corps (scrollable) ───────────────────────────────────────── */
+.acs-panel-body {
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Boutons principaux ──────────────────────────────────────── */
+.acs-btn {
+  all: initial;
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  transition: filter .15s;
+}
+.acs-btn:hover { filter: brightness(1.12); }
+.acs-btn:active { transform: translateY(1px); }
+.acs-btn-primary  { background: linear-gradient(135deg, #7c5cff, #5b8bff); }
+.acs-btn-secondary { background: #262949; border: 1px solid #34376a; color: #e9eaff; }
+.acs-btn-go   { background: #22c55e; }
+.acs-btn-stop { background: #ef4444; }
+
+.acs-help {
+  all: initial;
+  font-family: inherit;
+  display: block;
+  font-size: 11px;
+  color: #9aa0d0;
+  line-height: 1.4;
+}
+
+/* ── Liste des étapes ─────────────────────────────────────────── */
+.acs-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.acs-empty {
+  all: initial;
+  font-family: inherit;
+  display: block;
+  text-align: center;
+  color: #9aa0d0;
+  font-size: 12px;
+  padding: 12px 8px;
+  line-height: 1.5;
+  border: 1px dashed #34376a;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.acs-step {
+  background: #1d1f3a;
+  border: 1px solid #34376a;
+  border-radius: 8px;
+  padding: 7px 8px;
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 6px;
+  align-items: center;
+}
+.acs-step-sleep { border-left: 3px solid #fbbf24; }
+
+.acs-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #7c5cff;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  display: grid;
+  place-items: center;
+}
+.acs-step-sleep .acs-step-num { background: #fbbf24; color: #1b1b2e; }
+
+.acs-step-body { min-width: 0; }
+
+.acs-step-sel {
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: 11px;
+  color: #e9eaff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+.acs-step-sleep .acs-step-sel { color: #fbbf24; }
+
+.acs-step-controls {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.acs-select, .acs-delay {
+  all: initial;
+  font-family: inherit;
+  background: #262949;
+  color: #e9eaff;
+  border: 1px solid #34376a;
+  border-radius: 6px;
+  padding: 3px 5px;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+.acs-delay { width: 60px; }
+.acs-unit  { font-size: 10px; color: #9aa0d0; }
+
+.acs-step-right {
+  display: flex;
+  gap: 3px;
+}
+.acs-step-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.acs-icon-btn {
+  all: initial;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid #34376a;
+  background: #262949;
+  color: #9aa0d0;
+  border-radius: 4px;
+  width: 22px;
+  height: 17px;
+  font-size: 10px;
+  display: grid;
+  place-items: center;
+}
+.acs-icon-btn:hover { color: #e9eaff; border-color: #7c5cff; }
+.acs-del:hover { color: #fff; background: #ef4444; border-color: #ef4444; }
+
+/* ── Options ──────────────────────────────────────────────────── */
+.acs-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid #34376a;
+}
+.acs-opt { display: flex; flex-direction: column; gap: 3px; }
+.acs-opt-grow { flex: 1; min-width: 120px; }
+.acs-opt-label {
+  all: initial;
+  font-family: inherit;
+  display: block;
+  font-size: 11px;
+  color: #9aa0d0;
+}
+.acs-opt-check {
+  all: initial;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #e9eaff;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+.acs-opt-input {
+  all: initial;
+  font-family: inherit;
+  width: 58px;
+  background: #262949;
+  color: #e9eaff;
+  border: 1px solid #34376a;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+.acs-speed { width: 100%; accent-color: #7c5cff; }
+
+.acs-pointer-opt {
+  all: initial;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #9aa0d0;
+  cursor: pointer;
+}
+.acs-pointer-opt small { color: #6f74a6; font-size: 10px; }
+
+/* ── Lecture ─────────────────────────────────────────────────── */
+.acs-run {
+  display: flex;
+  gap: 8px;
+}
+.acs-run .acs-btn { flex: 1; }
+
+/* ── Statut ──────────────────────────────────────────────────── */
+.acs-panel-status {
+  all: initial;
+  font-family: inherit;
+  display: block;
+  font-size: 12px;
+  color: #9aa0d0;
+  background: #1d1f3a;
+  border: 1px solid #34376a;
+  border-radius: 8px;
+  padding: 7px 10px;
+  min-height: 32px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+.acs-panel-status.ok   { color: #86efac; border-color: #2f6b46; }
+.acs-panel-status.warn { color: #fbbf24; border-color: #6b5a2f; }
+.acs-panel-status.info { color: #e9eaff; }
+
+/* ── Pied de page ─────────────────────────────────────────────── */
+.acs-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 6px;
+  border-top: 1px solid #34376a;
+}
+
+.acs-link {
+  all: initial;
+  font-family: inherit;
+  cursor: pointer;
+  color: #9aa0d0;
+  font-size: 11px;
+  text-decoration: underline;
+}
+.acs-link:hover { color: #e9eaff; }
+.acs-link-danger:hover { color: #ef4444; }
