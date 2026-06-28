@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "AutoClicker Sandbox",
+  "version": "1.0.0",
+  "description": "Projet etudiant (42) : bac a sable d'automatisation de clics. Selectionne des elements a la pipette et rejoue une sequence de clics avec un curseur anime, sur n'importe quelle page.",
+  "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AutoClicker Sandbox",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
