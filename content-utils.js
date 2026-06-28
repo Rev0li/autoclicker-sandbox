@@ -21,10 +21,9 @@ if (!window.__ACS_LOADED__) {
     });
   };
 
-  // Envoie un statut au popup (ignoré si le popup est fermé).
+  // Délègue au panel flottant (défini par content-panel.js).
   ACS.status = function status(text, kind = "info") {
-    try { chrome.runtime.sendMessage({ type: "STATUS", text, kind }).catch(() => {}); }
-    catch (e) {}
+    if (typeof ACS.setStatus === "function") ACS.setStatus(text, kind);
   };
 
   // Toast d'information en bas de la page cible.

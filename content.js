@@ -45,6 +45,10 @@ if (window.__ACS_LOADED__) {
         ACS.runSequence(msg.steps, msg.options);
         sendResponse({ ok: true });
         break;
+      case "TOGGLE_PANEL":
+        ACS.togglePanel();
+        sendResponse({ ok: true });
+        break;
       case "STOP":
         ACS.state.stopRequested = true;
         ACS.stopPicking();

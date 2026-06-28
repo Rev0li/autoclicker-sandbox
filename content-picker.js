@@ -30,6 +30,7 @@ if (!window.__ACS_LOADED__) {
   function onPickMove(e) {
     const el = e.target;
     if (!(el instanceof Element) || el === pickBox || el === pickTag) return;
+    if (el.closest && el.closest(".acs-panel")) return; // ne pas surligner le panel lui-même
     const r = el.getBoundingClientRect();
     pickBox.style.left   = r.left   + "px";
     pickBox.style.top    = r.top    + "px";
@@ -46,6 +47,7 @@ if (!window.__ACS_LOADED__) {
     e.preventDefault();
     e.stopPropagation();
     const el = e.target;
+    if (el.closest && el.closest(".acs-panel")) { ACS.stopPicking(); return; } // clic sur le panel = annulation
     const selector = ACS.buildSelector(el);
     if (!selector) { ACS.toast("Élément non ciblable, réessaie."); return; }
 
